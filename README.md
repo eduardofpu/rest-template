@@ -3,6 +3,7 @@
 
 ## Requisitos
 ```
+java 1.8
 use o doker para construir um banco
 docker-compose up
 docker-compose dow
