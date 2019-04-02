@@ -28,17 +28,14 @@ public class EstudantePage{
         this.studentDao = studentDao;
 
     }
-//    //localhost:8080/estudantepage?sort=name,asc localhost:8080/estudantepage?sort=name,desc
-//    @GetMapping(path = "protected/estudents") //localhost:8080/estudantepage?page=1 localhost:8080/estudantepage?page=0&size=4
-//    public ResponseEntity<?> listAll(Pageable pageable) {
-//        return new ResponseEntity<>(studentDao.findAll(pageable), HttpStatus.OK);
-//    }
 
     //localhost:8080/estudantepage?sort=name,asc localhost:8080/estudantepage?sort=name,desc
     @GetMapping(path = "protected/estudents") //localhost:8080/estudantepage?page=1 localhost:8080/estudantepage?page=0&size=4
     public ResponseEntity<?> listAll(Pageable pageable) {
-        return new ResponseEntity<>(studentDao.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(studentDao.findAll(pageable), HttpStatus.OK);
     }
+
+
 
     @GetMapping(path = "protected/estudents/{id}")
     public ResponseEntity<?> getStudentId(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {

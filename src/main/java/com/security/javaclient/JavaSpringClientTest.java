@@ -1,39 +1,31 @@
 package com.security.javaclient;
 
 import com.security.model.StudenteEnty;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class JavaSpringClientTest {
     public static void main(String[] args) {
 
-        //Utilizando os metodos getForObject, getForEntity e exchange
+        //Teste os methodos do reste template
+        StudenteEnty studentePost = new StudenteEnty();
+        studentePost.setName("John Wick2");
+        studentePost.setEmail("john@pencil.com");
 
-        RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("http://localhost:8080/v1/protected/estudents")
-                .basicAuthorization("delfino","devdojo").build();
+        JavaClientDAO dao = new JavaClientDAO();
 
-        StudenteEnty studente = restTemplate.getForObject("/{id}", StudenteEnty.class, 1);
+        //System.out.println(dao.save(studentePost));
 
-        ResponseEntity<StudenteEnty> forEntty = restTemplate.getForEntity("/{id}", StudenteEnty.class, 2);
+//        System.out.println(dao.findById(1));
+//        System.out.println(dao.listAll());
 
-        StudenteEnty[] students = restTemplate.getForObject("/", StudenteEnty[].class);
 
-        ResponseEntity<List<StudenteEnty>> exchange = restTemplate.exchange("/",
-                HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<StudenteEnty>>() {
-                });
+//        List<StudenteEnty> studenteEnties = dao.listAll();
+//        System.out.println(studenteEnties);
 
-        System.out.println(studente);
-        System.out.println(forEntty);
-        System.out.println(forEntty.getBody());
-        System.out.println(Arrays.toString(students));
-        System.out.println(exchange.getBody());
+
+//        studentePost.setId(7L);
+//        dao.update(studentePost);
+//        dao.delete(201);
+
     }
+
 }
